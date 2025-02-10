@@ -1,0 +1,36 @@
+version: '3.8'
+
+networks:
+  practicaback:
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql_service
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: deportes
+      MYSQL_USER: user
+      MYSQL_PASSWORD: 1234
+    ports:
+      - "3360:3306"
+    networks:
+      - practicaback
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  web:
+    image: php:8.2-apache
+    container_name: apache_service
+    build: .
+    restart: always
+    ports:
+      - "8888:80"
+    networks:
+      - practicaback
+    volumes:
+      - ./..:/var/www/html
+
+volumes:
+  mysql_data:

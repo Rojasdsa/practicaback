@@ -38,6 +38,12 @@
             </ul>
             {{-- Menú ADMIN --}}
             <ul class="navbar-nav ms-auto">
+                @can('gestionar-productos')
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Panel de admin</a>
+                    </li>
+                @endcan
+
                 @auth
                     <li class="nav-item">
                         <a class="nav-link" href="#">{{ Auth::user()->name }}</a>

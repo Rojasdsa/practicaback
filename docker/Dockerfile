@@ -18,6 +18,9 @@ RUN apt-get update && apt-get install -y \
 # Instalar Composer (gestor de dependencias de PHP)
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+# Copiamos el archivo de configuración del servidor para que apunte a public
+COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
+
 # Configurar permisos correctos para Laravel
 WORKDIR /var/www/html 
 

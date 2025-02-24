@@ -1,4 +1,4 @@
-{{-- Incluimos todo el código de APP.BLADE --}}
+{{-- Incluimos todo el código de APP.BLADE que inlcuye header y footer --}}
 @extends('layouts.app')
 
 {{-- En el bloque CONTENT añadiremos el siguiente código--}}

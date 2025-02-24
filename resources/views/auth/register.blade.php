@@ -1,4 +1,7 @@
 <x-guest-layout>
+    <div class="text-center">
+        <p>FORMULARIO DE REGISTRO</p>
+    </div>
     <form method="POST" action="{{ route('register') }}">
         @csrf
 

@@ -3,7 +3,10 @@
 
 {{-- En el bloque CONTENT añadiremos el siguiente código--}}
 @section('content')
-    <header class="bg-primary text-white text-center py-5">
+
+<h1 class="text-center">WELCOME</h1>
+
+    <header class="bg-secondary text-white text-center py-5">
         <div class="container">
             <h1>Bienvenidos a Tejidos Violeta</h1>
             <p class="lead">La mejor tienda de telas y tejidos con stock disponible por metro</p>

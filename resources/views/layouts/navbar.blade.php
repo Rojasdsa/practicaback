@@ -14,13 +14,15 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
-            {{-- Menú TIENDA --}}
             <ul class="navbar-nav me-auto">
+                {{-- HOME --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('/') ? 'custom-active-link' : '' }}" href="{{ url('/') }}">
+                    <a class="nav-link {{ request()->is('/') || request()->is('dashboard') ? 'custom-active-link' : '' }}"
+                        href="{{ auth()->check() ? route('dashboard') : route('welcome') }}">
                         <i class="fa-solid fa-house"></i>
                     </a>
                 </li>
+                {{-- TIENDA --}}
                 @auth
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('productos') ? 'custom-active-link' : '' }}"
@@ -36,32 +38,49 @@
                     </li>
                 @endauth
             </ul>
-            {{-- Menú ADMIN --}}
-            <ul class="navbar-nav ms-auto">
-                @can('gestionar-productos')
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Panel de admin</a>
-                    </li>
-                @endcan
 
-                @auth
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">{{ Auth::user()->name }}</a>
+            @auth
+                <div class="text-white">Bienvenido, {{ Auth::user()->name }}</div>
+            @endauth
+
+            <ul class="navbar-nav ms-auto">
+                <div class="d-flex justify-content-center align-items-center">
+                    @auth
+                    {{-- PANEL ADMIN --}}
+                    <li class="nav-item mx-2">
+                        <div class="btn btn-info p-0">
+                            <a class="nav-link" href="{{ route('admin.panel') }}">
+                                <i class="fa-solid fa-toolbox"></i>
+                            </a>
+                        </div>
                     </li>
-                    <li class="nav-item">
-                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                            @csrf
-                            <button type="submit" class="nav-link btn btn-link">Salir</button>
-                        </form>
-                    </li>
-                @else
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">Iniciar Sesión</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">Registrarse</a>
-                    </li>
-                @endauth
+
+                    @can('gestionar-productos')
+                    @endcan
+
+                    {{-- Menú USUARIO --}}
+                        <li class="nav-item mx-1">
+                            <a class="nav-link" href="#">
+                                <i class="fa-solid fa-user"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item mx-1">
+                            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                @csrf
+                                <button type="submit" class="nav-link btn btn-link">
+                                    <i class="fa-solid fa-power-off"></i>
+                                </button>
+                            </form>
+                        </li>
+                    @else
+                        <li class="nav-item mx-1">
+                            <a class="nav-link text-white" href="{{ route('login') }}">Iniciar Sesión</a>
+                        </li>
+                        <li class="nav-item mx-1">
+                            <a class="nav-link text-white" href="{{ route('register') }}">Registrarse</a>
+                        </li>
+                    @endauth
+                </div>
             </ul>
         </div>
     </div>

@@ -10,15 +10,11 @@ use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
-// $roleAdmin = Role::create(['name' => 'admin']);
-// $permissionGestionarProductos = Permission::create(['name' => 'gestionar-productos']);
-// $roleAdmin->givePermissionTo($permissionGestionarProductos);
-// $permissionGestionarProductos->assignRoleAdmin($roleAdmin);
-
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasRoles;
+    use HasFactory, Notifiable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.

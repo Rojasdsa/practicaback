@@ -45,20 +45,19 @@
 
             <ul class="navbar-nav ms-auto">
                 <div class="d-flex justify-content-center align-items-center">
-                    @auth
                     {{-- PANEL ADMIN --}}
-                    <li class="nav-item mx-2">
-                        <div class="btn btn-info p-0">
-                            <a class="nav-link" href="{{ route('admin.panel') }}">
-                                <i class="fa-solid fa-toolbox"></i>
-                            </a>
-                        </div>
-                    </li>
-
-                    @can('gestionar-productos')
+                    @can('panel admin')
+                        <li class="nav-item mx-2">
+                            <div class="btn btn-info p-0">
+                                <a class="nav-link" href="{{ route('admin.panel') }}">
+                                    <i class="fa-solid fa-toolbox"></i>
+                                </a>
+                            </div>
+                        </li>
                     @endcan
 
                     {{-- Menú USUARIO --}}
+                    @auth
                         <li class="nav-item mx-1">
                             <a class="nav-link" href="#">
                                 <i class="fa-solid fa-user"></i>

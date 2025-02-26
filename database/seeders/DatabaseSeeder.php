@@ -8,11 +8,9 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
+        /* Aquí se crea el usuario, el rol y los permisos */
         $this->call([
             UserSeeder::class,
         ]);

@@ -37,11 +37,38 @@
 
 /* GUEST */
 .custom-guest {
-    background-color: rgb(165, 99, 205,0.5);
+    background-color: rgb(165, 99, 205, 0.5);
 }
 
 /* GUEST >> LOGO */
 .custom-guest-logo {
     width: 150px;
     height: auto;
+}
+
+/* LOGIN >> EMAIL, PASSWORD, REMEMBER */
+/* REGISTER >> NAME, EMAIL, PASSWORD, CONFIRM */
+.custom-field:focus {
+    border-color: #8e44ad;
+    box-shadow: 0 0 0 0.2rem rgba(142, 68, 173, 0.5);
+}
+
+/* LOGIN >> BOTÓN LOGIN*/
+/* REGISTER >> BOTÓN REGISTER*/
+.custom-login,
+.custom-register {
+    background-color: #A563CD;
+    color: white;
+}
+
+.custom-login:hover,
+.custom-register:hover {
+    background-color: rgb(165, 99, 205, 0.8);
+    color: white;
+}
+
+/* LOGIN >> CHECKBOX */
+.custom-field-check:checked {
+    background-color: #8e44ad;
+    border-color: #8e44ad;
 }

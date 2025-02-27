@@ -31,7 +31,7 @@
                     class="rounded-circle custom-guest-logo">
             </div>
             <div class="border border-3 rounded p-5 pt-4 mb-5 bg-white">
-                {{ $slot }}
+                @yield('content')
             </div>
         </main>
     </div>

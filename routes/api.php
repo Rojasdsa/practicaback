@@ -1,22 +1,16 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RetalController;
 
-use App\Http\Controllers\retalController;
+Route::get('/retales', [RetalController::class, 'index']);
 
-Route::get('/retales', [retalController::class, 'index']);
+Route::get('/retales/{id}', [RetalController::class, 'show']);
 
-Route::get('/retales/{id}', [retalController::class, 'show'] );
+Route::post('/retales', [RetalController::class, 'store']);
 
-Route::post('/retales', [retalController::class, 'store']);
+Route::put('/retales/{id}', [RetalController::class, 'update']);
 
-Route::put('/retales/{id}', [retalController::class, 'update']);
+Route::patch('/retales/{id}', [RetalController::class, 'updatePartial']);
 
-Route::patch('/retales/{id}', [retalController::class, 'updatePartial']);
-
-Route::delete('/retales/{id}', [retalController::class, 'destroy']);
-
-
-
-
+Route::delete('/retales/{id}', [RetalController::class, 'destroy']);

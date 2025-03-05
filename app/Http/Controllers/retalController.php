@@ -7,7 +7,7 @@ use App\Models\Retal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class retalController extends Controller
+class RetalController extends Controller
 {
     /* VER TODOS LOS RETALES */
     public function index()

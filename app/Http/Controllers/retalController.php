@@ -79,7 +79,7 @@ class RetalController extends Controller
 
         $data = [
             'retal' => $retal,
-            'status' => 201
+            'status' => 200
         ];
     }
 
@@ -128,7 +128,7 @@ class RetalController extends Controller
         return response()->json($data, 200);
     }
 
-    /* EDITAR DATOS DE UN RETAL */
+    /* EDITAR UN DATO DE UN RETAL */
     public function updatePartial(Request $request, $id)
     {
         $retal = Retal::find($id);

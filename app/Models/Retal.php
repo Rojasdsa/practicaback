@@ -2,18 +2,13 @@
 
 namespace App\Models;
 
-/* REVISAR */
 use Database\Factories\RetalFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-/**/
-
 use Illuminate\Database\Eloquent\Model;
 
 class Retal extends Model
 {
-    /* REVISAR */
     use HasFactory;
-    /**/
 
     protected $table = 'retales';
 
@@ -41,8 +36,8 @@ class Retal extends Model
         return new RetalFactory();
     }
 
-    const ESTADO_DISPONIBLE = "Disponible";
-    const ESTADO_VENDIDO    = "Vendido";
+    const ESTADO_DISPONIBLE = "disponible";
+    const ESTADO_VENDIDO    = "vendido";
 
     const ESTADOS = [
         self::ESTADO_DISPONIBLE,

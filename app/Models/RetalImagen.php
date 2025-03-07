@@ -2,17 +2,12 @@
 
 namespace App\Models;
 
-/* REVISAR */
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-/**/
-
 use Illuminate\Database\Eloquent\Model;
 
 class RetalImagen extends Model
 {
-    /* REVISAR */
     use HasFactory;
-    /**/
 
     protected $table = 'retal_imagenes';
 

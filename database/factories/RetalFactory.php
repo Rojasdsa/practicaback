@@ -4,12 +4,10 @@ namespace Database\Factories;
 
 use App\Models\Retal;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 class RetalFactory extends Factory
 {
-
+    protected $model = Retal::class;
 
     /**
      * Define the model's default state.
@@ -19,10 +17,28 @@ class RetalFactory extends Factory
     public function definition(): array
     {
         return [
-            'nombre' => $this->faker->text(8),
-            'metros' => $this->faker->randomFloat(4,2),
-            'precio' => $this->faker->randomFloat(4,2),
-            'image' => $this->faker->imageUrl(),
+            'tejido'         => $this->faker->randomElement(['strech', 'popelin', 'jacquard', 'viscosa']),
+            'subcategoria'   => $this->faker->randomElement(['estampado', 'flocado', 'otros']),
+            'gama'           => $this->faker->randomElement([
+                'amarillo',
+                'azul',
+                'blanco',
+                'gris',
+                'marrón',
+                'morado',
+                'naranja',
+                'negro',
+                'rojo',
+                'rosa',
+                'verde'
+            ]),
+            'color_primario'   => $this->faker->colorName(),
+            'color_secundario' => $this->faker->colorName(),
+            'metros'           => $this->faker->randomFloat(2, 0.1, 9.99),  // Mínimo 0.1, máximo 9.99
+            'precio_base'      => $this->faker->randomFloat(2, 0.1, 99.99), // Mínimo 0.1, máximo 99.99
+            'precio_retal'     => $this->faker->randomFloat(2, 0.1, 99.99), // Mínimo 0.1, máximo 99.99
+            'estado'           => $this->faker->randomElement(Retal::ESTADOS),
+            'descripcion'      => $this->faker->sentence(),
         ];
     }
 
@@ -31,13 +47,14 @@ class RetalFactory extends Factory
     public function deEstadoDisponible(): static
     {
         return $this->state([
-            "estado" => Retal::ESTADO_DISPONIBLE
+            'estado' => 'disponible'
         ]);
     }
+
     public function deEstadoVendido(): static
     {
         return $this->state([
-            "estado" => Retal::ESTADO_VENDIDO
+            'estado' => 'vendido'
         ]);
     }
 }

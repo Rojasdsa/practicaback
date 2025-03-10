@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\RetalesAdminController;
 use Illuminate\Support\Facades\Route;
 
 /* WELCOME */
@@ -18,8 +19,10 @@ Route::get('/dashboard', function () {
 Route::middleware(['auth', 'can:panel admin'])->group(function () {
     Route::get('/admin/panel', function () {
         return view('admin.panel');
-    })->name('admin.panel');
+    })->name('admin.index');
 });
+
+Route::get('/admin/panel', [RetalesAdminController::class, 'index'])->name('admin.panel');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

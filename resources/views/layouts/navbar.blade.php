@@ -3,10 +3,10 @@
     {{-- Centramos el nav --}}
     <div class="container">
         {{-- Logo + redirección a inicio --}}
-        <a class="navbar-brand" href="{{ url('/') }}">
+        {{-- <a class="navbar-brand" href="{{ url('/') }}">
             <img src="https://pbs.twimg.com/profile_images/947504948765450240/nZtFY4Lb_400x400.jpg"
                 class="rounded-circle custom-nav-logo">
-        </a>
+        </a> --}}
         {{-- Toggler para móviles --}}
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,7 +14,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
+            <ul class="navbar-nav me-auto col-4 justify-content-start">
                 {{-- HOME --}}
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('/') || request()->is('dashboard') ? 'custom-active-link' : '' }}"
@@ -40,10 +40,10 @@
             </ul>
 
             @auth
-                <div class="text-white">Bienvenido, {{ Auth::user()->name }}</div>
+                <div class="text-white col-4 text-center">Bienvenido, {{ Auth::user()->name }}</div>
             @endauth
 
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto col-4 justify-content-end">
                 <div class="d-flex justify-content-center align-items-center">
                     {{-- PANEL ADMIN --}}
                     @can('panel admin')

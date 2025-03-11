@@ -72,3 +72,34 @@
     background-color: #8e44ad;
     border-color: #8e44ad;
 }
+
+/* PANEL ADMIN */
+
+/* Sidebar con altura fija y scroll interno */
+.custom-sidebar {
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    position: fixed; /* Mantiene el sidebar fijo al lado izquierdo */
+}
+
+/* Contenido principal */
+.custom-panel {
+    overflow-y: auto; /* Permite el desplazamiento si el contenido excede la altura de la ventana */
+}
+
+/* PANEL ADMIN >> SIDEBAR */
+
+.nav-link.custom-active.active {
+    background-color: #A563CD;
+    color: #fff;
+    border-color: #A563CD;
+}
+
+.nav-link.custom-active{
+    color: #fff;
+}
+
+.custom-active:hover {
+    background-color: #8e44ad !important;
+    color: #fff;
+    border-color: #8e44ad !important;
+}

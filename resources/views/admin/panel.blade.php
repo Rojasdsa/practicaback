@@ -4,8 +4,8 @@
     <div class="d-flex">
         @include('admin.partials.sidebar') <!-- Aquí incluyes el sidebar -->
 
-        <div class="container-fluid">
-            <h1>Lista de Retales</h1>
+        <div class="container-fluid col-10 p-3 custom-panel">
+            <h2 class="mb-4">Lista de Retales</h2>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -27,11 +27,6 @@
             </table>
         </div>
     </div>
-
-    <!-- Pasar los datos de retales al script -->
-    <script>
-        const retalesData = @json($retalesJson);
-    </script>
 
     @vite('resources/js/admin/retales/script-panel.js')
 @endsection

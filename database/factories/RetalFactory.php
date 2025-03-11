@@ -17,21 +17,9 @@ class RetalFactory extends Factory
     public function definition(): array
     {
         return [
-            'tejido'         => $this->faker->randomElement(['strech', 'popelin', 'jacquard', 'viscosa']),
-            'subcategoria'   => $this->faker->randomElement(['estampado', 'flocado', 'otros']),
-            'gama'           => $this->faker->randomElement([
-                'amarillo',
-                'azul',
-                'blanco',
-                'gris',
-                'marrón',
-                'morado',
-                'naranja',
-                'negro',
-                'rojo',
-                'rosa',
-                'verde'
-            ]),
+            'tejido'         => $this->faker->randomElement(Retal::TEJIDOS),
+            'subcategoria'   => $this->faker->randomElement(Retal::SUBCATEGORIAS),
+            'gama'           => $this->faker->randomElement(Retal::GAMAS),
             'color_primario'   => $this->faker->colorName(),
             'color_secundario' => $this->faker->colorName(),
             'metros'           => $this->faker->randomFloat(2, 0.1, 9.99),  // Mínimo 0.1, máximo 9.99
@@ -42,8 +30,136 @@ class RetalFactory extends Factory
         ];
     }
 
-    /* ESTADOS */
+    // Enum 'tejido'
+    public function deTejidoStrech(): static
+    {
+        return $this->state([
+            'tejido' => Retal::TEJIDO_STRECH
+        ]);
+    }
 
+    public function deTejidoPopelin(): static
+    {
+        return $this->state([
+            'tejido' => Retal::TEJIDO_POPELIN
+        ]);
+    }
+
+    public function deTejidoJacquard(): static
+    {
+        return $this->state([
+            'tejido' => Retal::TEJIDO_JACQUARD
+        ]);
+    }
+
+    public function deTejidoViscosa(): static
+    {
+        return $this->state([
+            'tejido' => Retal::TEJIDO_VISCOSA
+        ]);
+    }
+
+    // Enum 'subcategoría'
+    public function deSubcategoriaEstampado(): static
+    {
+        return $this->state([
+            'subcategoria' => Retal::SUBCATEGORIA_ESTAMPADO
+        ]);
+    }
+
+    public function deSubcategoriaFlocado(): static
+    {
+        return $this->state([
+            'subcategoria' => Retal::SUBCATEGORIA_FLOCADO
+        ]);
+    }
+
+    public function deSubcategoriaOtros(): static
+    {
+        return $this->state([
+            'subcategoria' => Retal::SUBCATEGORIA_OTROS
+        ]);
+    }
+
+    // Enum 'gama'
+    public function deGamaAmarillo(): static
+    {
+        return $this->state([
+            'gama' => Retal::GAMA_AMARILLO
+        ]);
+    }
+
+    public function deGamaAzul(): static
+    {
+        return $this->state([
+            'gama' => Retal::GAMA_AZUL
+        ]);
+    }
+
+    public function deGamaBlanco(): static
+    {
+        return $this->state([
+            'gama' => Retal::GAMA_BLANCO
+        ]);
+    }
+
+    public function deGamaGris(): static
+    {
+        return $this->state([
+            'gama' => Retal::GAMA_GRIS
+        ]);
+    }
+
+    public function deGamaMarron(): static
+    {
+        return $this->state([
+            'gama' => Retal::GAMA_MARRON
+        ]);
+    }
+
+    public function deGamaMorado(): static
+    {
+        return $this->state([
+            'gama' => Retal::GAMA_MORADO
+        ]);
+    }
+
+    public function deGamaNaranja(): static
+    {
+        return $this->state([
+            'gama' => Retal::GAMA_NARANJA
+        ]);
+    }
+
+    public function deGamaNegro(): static
+    {
+        return $this->state([
+            'gama' => Retal::GAMA_NEGRO
+        ]);
+    }
+
+    public function deGamaRojo(): static
+    {
+        return $this->state([
+            'gama' => Retal::GAMA_ROJO
+        ]);
+    }
+
+    public function deGamaRosa(): static
+    {
+        return $this->state([
+            'gama' => Retal::GAMA_ROSA
+        ]);
+    }
+
+    public function deGamaVerde(): static
+    {
+        return $this->state([
+            'gama' => Retal::GAMA_VERDE
+        ]);
+    }
+
+    // Enum 'estado'
     public function deEstadoDisponible(): static
     {
         return $this->state([

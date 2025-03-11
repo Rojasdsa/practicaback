@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\RetalesAdminController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Retal;
+use Illuminate\Http\Request;
 
 /* WELCOME */
 
@@ -23,6 +25,15 @@ Route::middleware(['auth', 'can:panel admin'])->group(function () {
 });
 
 Route::get('/admin/panel', [RetalesAdminController::class, 'index'])->name('admin.panel');
+
+Route::get('/retales', function () {
+    $retales = Retal::with('imagenes')->get();
+    return response()->json([
+        'count' => $retales->count(),
+        'data' => $retales
+    ]);
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

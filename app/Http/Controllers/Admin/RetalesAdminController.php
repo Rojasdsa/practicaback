@@ -10,6 +10,12 @@ class RetalesAdminController extends Controller
 {
     public function index(): View
     {
-        return view('admin.panel');
+        // Pasamos las constantes del modelo Retal a la vista
+        return view('admin.panel', [
+            'tejidos' => Retal::TEJIDOS,
+            'subcategorias' => Retal::SUBCATEGORIAS,
+            'gamas' => Retal::GAMAS,
+            'estados' => Retal::ESTADOS,
+        ]);
     }
 }

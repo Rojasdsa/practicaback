@@ -16,6 +16,7 @@
             <table class="table table-striped table-hover table-bordered">
                 <thead class="table-dark">
                     <tr>
+                        <th>ID</th>
                         <th>Tejido</th>
                         <th>Subcategoría</th>
                         <th>Gama</th>

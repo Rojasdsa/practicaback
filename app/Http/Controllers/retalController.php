@@ -20,7 +20,7 @@ class RetalController extends Controller
     /* #1 - VER TODOS LOS RETALES */
     public function index(): JsonResponse
     {
-        $retales = Retal::with('imagenes')->paginate(10);
+        $retales = Retal::with('imagenes')->orderBy('id', 'desc')->paginate(10);
         return $this->respondJson(['retales' => $retales]);
     }
 

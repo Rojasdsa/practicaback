@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header bg-dark text-white">
                 <h5 class="modal-title" id="modalAgregarRetalLabel">Añadir Retal</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="formAgregarRetal">
@@ -116,7 +116,7 @@
         <div class="modal-content">
             <div class="modal-header bg-dark text-white">
                 <h5 class="modal-title" id="modalEditarRetalLabel">Editar Retal</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="formEditarRetal">
@@ -213,9 +213,29 @@
                     </div>
 
                     <div class="text-center">
-                        <button type="submit" class="btn btn-success">Guardar cambios</button>
+                        <button type="submit" class="btn btn-warning">Guardar cambios</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- MODAL - Eliminar retal --}}
+<div class="modal fade" id="modalEliminarRetal" tabindex="-1" aria-labelledby="modalEliminarRetalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="modalEliminarRetalLabel">Eliminar Retal</h5>
+                <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que deseas eliminar este retal?</p>
+                <p><strong id="retal-info"></strong></p>
+                <div class="text-center">
+                    <button type="button" class="btn btn-danger" id="confirmarEliminarRetal">Eliminar</button>
+                </div>
             </div>
         </div>
     </div>

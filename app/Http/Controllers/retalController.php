@@ -124,8 +124,12 @@ class RetalController extends Controller
             $imagen->delete();
         }
 
+        if (!$retal) {
+            return response()->json(['message' => 'Retal no encontrado'], 404);
+        }
+    
         $retal->delete();
-
-        return response()->json(null, 204);
+    
+        return response()->json(['message' => 'Retal eliminado correctamente'], 200);
     }
 }

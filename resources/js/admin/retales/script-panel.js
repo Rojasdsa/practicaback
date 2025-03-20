@@ -5,26 +5,39 @@ document.addEventListener("DOMContentLoaded", function () {
     const paginationContainer = document.getElementById("pagination");
     const modalAgregarRetal = new bootstrap.Modal(document.getElementById('modalAgregarRetal'));
     const modalEditarRetal = new bootstrap.Modal(document.getElementById('modalEditarRetal'));
+    const modalEliminarRetal = new bootstrap.Modal(document.getElementById('modalEliminarRetal'));
 
     let currentPage = 1;
     let totalPages = 1;
     let currentRetalId = null;
+    let retalIdAEliminar = null;
+
 
     // Función para realizar peticiones a la API
     async function fetchAPI(url, options = {}) {
         try {
             const response = await fetch(url, options);
-            const data = await response.json();
+    
+            if (response.status === 204) {
+                return null; // No hay contenido, pero no es un error
+            }
+    
+            const text = await response.text();
+            const data = text ? JSON.parse(text) : null;
+    
             if (!response.ok) {
                 console.error("❌ Error en la API:", data);
-                throw new Error(data.message || "Error desconocido en la API");
+                throw new Error(data?.message || `Error desconocido (${response.status})`);
             }
+    
             return data;
         } catch (error) {
             console.error('❌ Error en fetchAPI:', error);
             return null;
         }
     }
+    
+
 
     // Agregar un retal a la tabla
     function agregarFilaRetal(retal) {
@@ -61,7 +74,10 @@ document.addEventListener("DOMContentLoaded", function () {
             const pageLink = document.createElement('button');
             pageLink.className = `btn btn-sm ${i === currentPage ? 'btn-primary' : 'btn-dark'} mx-1`;
             pageLink.innerText = i;
-            pageLink.onclick = () => loadRetales(i);
+            pageLink.onclick = () => {
+                currentPage = i; // Actualizar currentPage antes de cargar los datos
+                loadRetales(i);
+            };
             paginationContainer.appendChild(pageLink);
         }
     }
@@ -103,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         if (data && data.retal) {
-            agregarFilaRetal(data.retal);
+            loadRetales(currentPage);
             modalAgregarRetal.hide();
             formAgregarRetal.reset();
         }
@@ -165,5 +181,33 @@ document.addEventListener("DOMContentLoaded", function () {
         loadRetales(currentPage);
     });
 
+    // Abrir modal de eliminación
+    tbody.addEventListener('click', function (event) {
+        const button = event.target.closest('.eliminar-retal-btn');
+        if (button) {
+            retalIdAEliminar = button.getAttribute('data-id');
+            const fila = button.closest('tr');
+            const tejido = fila.children[1].textContent;
+            const metros = fila.children[6].textContent;
+
+            document.getElementById("retal-info").textContent = `${tejido} - ${metros}`;
+            modalEliminarRetal.show();
+        }
+    });
+
+    // Confirmar eliminación
+    document.getElementById("confirmarEliminarRetal").addEventListener("click", async function () {
+        if (retalIdAEliminar) {
+            const response = await fetchAPI(`/api/retales/${retalIdAEliminar}`, {
+                method: 'DELETE'
+            });
+    
+            if (response !== null) {
+                modalEliminarRetal.hide();
+                loadRetales(currentPage); // Recargar retales después de eliminar
+            }
+        }
+    });
+    
     loadRetales(currentPage);
 });
